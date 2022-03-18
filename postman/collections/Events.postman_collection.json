@@ -1,0 +1,374 @@
+{
+	"info": {
+		"_postman_id": "18320a8f-acac-4a15-9a7e-d4eb1c897a25",
+		"name": "Events",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create event",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"type\": \"entrance\",\n    \"device\": { \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\" },\n    \"node\": { \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338df\" }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/{{controller}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{controller}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "400.Invalid type",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"test\",\n    \"device\": { \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\" },\n    \"node\": { \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338df\" }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{controller}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{controller}}"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "107"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"6b-YvpMOSPs3Ko2hB5HRvAdKR387yQ\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Mar 2022 21:16:18 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"HTTP.400\",\n    \"message\": \"Bad Request\",\n    \"details\": [\n        \"type must be a valid enum value: [entrance, exit]\"\n    ]\n}"
+				},
+				{
+					"name": "409.Same Node entrance / exit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"exit\",\n    \"device\": { \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\" },\n    \"node\": { \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338df\" }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{controller}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{controller}}"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-jOcyrfRQd6Zw/EsZ0d5/NRgp5y4\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Mar 2022 21:01:21 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"EVENT.002\",\n    \"message\": \"Cannot entry or exit from the same Node\"\n}"
+				},
+				{
+					"name": "409.Double entrance / exit",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"entrance\",\n    \"device\": { \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\" },\n    \"node\": { \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338df\" }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{controller}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{controller}}"
+							]
+						}
+					},
+					"status": "Conflict",
+					"code": 409,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-XOD1joTVa7k2p3oHRSa3OpI6o74\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Mar 2022 21:03:09 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"EVENT.001\",\n    \"message\": \"Cannot entry before exit and vice versa\"\n}"
+				},
+				{
+					"name": "422.Constraint violation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"entrance\",\n    \"device\": { \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\" },\n    \"node\": { \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338d1\" }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{controller}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{controller}}"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "68"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"44-FA057yXoU2fh+d4A9aKRUBe4SGA\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Mar 2022 21:17:33 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"code\": \"EVENT.003\",\n    \"message\": \"Device or Node constraint violation\"\n}"
+				},
+				{
+					"name": "201. Event created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"entrance\",\n    \"device\": { \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\" },\n    \"node\": { \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338df\" }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/{{controller}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{controller}}"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "171"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"ab-D5L0gTt7b7nveuMB7CvTixvuq/M\""
+						},
+						{
+							"key": "Date",
+							"value": "Fri, 18 Mar 2022 21:00:36 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": \"d0c66ea1-9167-4d38-a6a4-1a839dcfb83c\",\n    \"type\": \"entrance\",\n    \"device\": {\n        \"id\": \"e3ab8c16-78ef-47db-8e4f-d0173126ffe0\"\n    },\n    \"node\": {\n        \"id\": \"6cacc7e2-7f71-4240-a4d0-dddb189338df\"\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "controller",
+			"value": "events",
+			"type": "string"
+		}
+	]
+}

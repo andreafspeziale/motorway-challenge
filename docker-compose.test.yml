@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: database-test
+    image: postgres:13.3-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: motorway-test
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secretpassword
+    volumes:
+      - db-data-test:/var/lib/postgresql/data
+
+volumes:
+  db-data-test:

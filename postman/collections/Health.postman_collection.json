@@ -1,0 +1,105 @@
+{
+	"info": {
+		"_postman_id": "178c2971-56b0-401b-b915-84fbce47be63",
+		"name": "Health",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/{{controller}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{controller}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "200. Up",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/{{controller}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"{{controller}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "101"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"65-5fn2EhXoSTMOegV3JtjoHnuo+e8\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 16 Mar 2022 21:56:17 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"status\": \"ok\",\n    \"info\": {\n        \"database\": {\n            \"status\": \"up\"\n        }\n    },\n    \"error\": {},\n    \"details\": {\n        \"database\": {\n            \"status\": \"up\"\n        }\n    }\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "controller",
+			"value": "healthz",
+			"type": "string"
+		}
+	]
+}

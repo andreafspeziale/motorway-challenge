@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: database-runner
+    image: postgres:13.3-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: motorway-runner
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secretpassword
+    volumes:
+      - db-data-runner:/var/lib/postgresql/data
+  api:
+    build:
+      target: runner
+    image: motorway:runner-latest
+    pull_policy: never
+    container_name: api-runner
+    environment:
+      LOGGER_LEVEL: info
+      LOGGER_PRETTY: true
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: motorway-runner
+      DB_MIGRATIONS_FOLDER: development
+      DB_USERNAME: user
+      DB_PASSWORD: secretpassword
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
+volumes:
+  db-data-runner:

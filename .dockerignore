@@ -1,0 +1,14 @@
+docs
+env
+node_modules
+postman
+.editorconfig
+.env
+.eslintrc.js
+.gitignore
+.git
+.npmrc
+.prettierrc
+docker-compose*.yml
+Dockerfile
+README.md

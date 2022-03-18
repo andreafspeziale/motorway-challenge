@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: database-tester
+    image: postgres:13.3-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: motorway-tester
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: secretpassword
+    logging:
+      driver: none
+    volumes:
+      - db-data-tester:/var/lib/postgresql/data
+  api:
+    build:
+      target: tester
+    image: motorway:tester-latest
+    pull_policy: never
+    container_name: api-tester
+    environment:
+      LOGGER_LEVEL: silent
+      LOGGER_PRETTY: true
+      LOGGER_REDACT: password
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: motorway-tester
+      DB_MIGRATIONS_FOLDER: test
+      DB_USERNAME: user
+      DB_PASSWORD: secretpassword
+    depends_on:
+      - db
+
+volumes:
+  db-data-tester:
