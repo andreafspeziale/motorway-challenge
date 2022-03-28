@@ -20,24 +20,6 @@ export const eventsHttpExceptionMap = {
   },
 };
 
-class EventWrongTypeException extends Exception {}
-class EventEntranceExitException extends Exception {}
-class EventConstraintsViolationException extends Exception {}
-
-export const throwEventWrongTypeException = (): never => {
-  throw new EventWrongTypeException({
-    message: EventExceptionMessage.WrongTypeException,
-  });
-};
-
-export const throwEventEntranceExitException = (): never => {
-  throw new EventEntranceExitException({
-    message: EventExceptionMessage.EntranceExitException,
-  });
-};
-
-export const throwEventConstraintsViolationException = (): never => {
-  throw new EventConstraintsViolationException({
-    message: EventExceptionMessage.ConstraintsViolation,
-  });
-};
+export class EventWrongTypeException extends Exception {}
+export class EventEntranceExitException extends Exception {}
+export class EventConstraintsViolationException extends Exception {}
