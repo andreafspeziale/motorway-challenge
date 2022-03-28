@@ -16,7 +16,6 @@ async function bootstrap(): Promise<void> {
     .setTitle('Motorway API')
     .setDescription('Motorway RESTful API service.')
     .setVersion(serviceMetadata.version)
-    .addBearerAuth()
     .build();
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig, {
     extraModels: [HttpException],
