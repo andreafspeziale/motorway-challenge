@@ -4,8 +4,8 @@ The challenge can be found in the `docs` folder.
 
 ## Notes:
 
-- No authentication in place
-- Drivers will always prefer the shortest path to go from A to B
+- No authentication in place (`OAuth 2.0` standard using `grant_type=client_credentials` would be a good fit)
+- Drivers will always prefer the shortest path to go from A to B (using `Dijkstra` algorithm)
 - One Device per Driver
 - Fixed cost per Km
 - The **BillModule** which computes the cost of the travels for a specific user in a specific period is integreted in the same server. It would be better to have it as a standalone application which can be separately deployed, eventually scheduled and horizontally scaled
@@ -14,10 +14,9 @@ The challenge can be found in the `docs` folder.
 
 ![network](./docs/statics/network.png)
 
-In order to play with **Postman** as suggested in the next sections, the following data is available:
+The following data is available at `t0` in order to play with **Postman** as suggested in the next sections:
 
 - DeviceId: `e3ab8c16-78ef-47db-8e4f-d0173126ffe0`
-
 - NodeAId: `6cacc7e2-7f71-4240-a4d0-dddb189338df`
 - NodeBId: `76310119-0623-41e8-bb88-4a4e1597ce03`
 - NodeCId: `1f8642d8-7252-431d-b209-87ff535c692a`
@@ -42,13 +41,13 @@ $ docker compose -f docker-compose.runner.yml up
 - Add `-d` to start all containers in detached mode (you won't see any logs).
 - Add `--build` to rebuild the Docker image used by the docker compose.
 
-In order to run also the tests without having `Node.Js` on your local mchine:
+Visit [http://localhost:3000/swagger](http://localhost:3000/swagger/) for APIs documentation (host and port according to environment variables).
+
+In order to run also the tests without having `Node.Js` on your local machine:
 
 ```bash
 $ docker compose -f docker-compose.tester.yml up
 ```
-
-Visit [http://localhost:3000/swagger](http://localhost:3000/swagger/) for APIs documentation (host and port according to environment variables).
 
 ## Postman
 
