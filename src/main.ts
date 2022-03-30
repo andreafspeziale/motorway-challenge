@@ -12,11 +12,13 @@ async function bootstrap(): Promise<void> {
   const configService = app.get(ConfigService);
 
   const serviceMetadata = configService.get<ServiceMetadata>('service');
+
   const swaggerConfig = new DocumentBuilder()
     .setTitle('Motorway API')
     .setDescription('Motorway RESTful API service.')
     .setVersion(serviceMetadata.version)
     .build();
+
   const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig, {
     extraModels: [HttpException],
   });
@@ -26,10 +28,10 @@ async function bootstrap(): Promise<void> {
   });
 
   app.use(rTracer.expressMiddleware());
-
   app.enableShutdownHooks();
 
   const serverConfig = configService.get<ServerConfig>('server');
+
   await app.listen(serverConfig.port, serverConfig.host);
 }
 

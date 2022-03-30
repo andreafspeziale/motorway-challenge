@@ -24,8 +24,9 @@ services:
       DB_HOST: db
       DB_PORT: 5432
       DB_DATABASE: motorway-runner
-      DB_MIGRATIONS_FOLDER: development
+      DB_MIGRATIONS_FOLDER: production
       DB_USERNAME: user
+      DB_SSL_ENABLED: false
       DB_PASSWORD: secretpassword
     ports:
       - 3000:3000
