@@ -29,6 +29,7 @@ services:
       DB_DATABASE: motorway-tester
       DB_MIGRATIONS_FOLDER: test
       DB_USERNAME: user
+      DB_SSL_ENABLED: false
       DB_PASSWORD: secretpassword
     depends_on:
       - db

@@ -146,6 +146,12 @@ Description: port number to connect to the database.
 Required: _true_ \
 Description: database name.
 
+- `DB_SCHEMA`
+
+Required: _false_ \
+Default: `public` \
+Description: database schema.
+
 - `DB_MIGRATIONS_FOLDER`
 
 Required: _true_ \
@@ -156,7 +162,27 @@ Description: migration folder name.
 Required: _true_ \
 Description: database username.
 
-- `DB_PASSWORD`
+- `DB_SSL_ENABLED`
 
 Required: _true_ \
+Description: database SSL connection.
+
+- `DB_PASSWORD`
+
+Required: only when `DB_SSL_ENABLED` is _false_ \
 Description: database password.
+
+- `DB_SSL_CA`
+
+Required: only when `DB_SSL_ENABLED` is _true_ \
+Description: database SSL ca.
+
+- `DB_SSL_CERT`
+
+Required: only when `DB_SSL_ENABLED` is _true_ \
+Description: database SSL cert.
+
+- `DB_SSL_KEY`
+
+Required: only when `DB_SSL_ENABLED` is _true_ \
+Description: database SSL key.

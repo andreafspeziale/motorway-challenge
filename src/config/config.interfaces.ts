@@ -21,11 +21,17 @@ export interface DbConfig {
   host: string;
   port: number;
   database: string;
+  schema: string;
   synchronize: boolean;
   migrationsRun: boolean;
   migrationsFolder: string;
   username: string;
-  password: string;
+  password?: string;
+  ssl?: {
+    ca: string;
+    cert: string;
+    key: string;
+  };
 }
 
 export interface Config {
